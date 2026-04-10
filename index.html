@@ -2,233 +2,200 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Перший клікер</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Документація перекладача</title>
+
     <style>
-        h1 {
-            position: absolute;
-            font-size: 50px;
-            right: 300px;
-            top: 1px;
-        }
         body {
-            background-color: #383838;
+            font-family: Sans-Serif;
+            padding: 10px;
+            background-color: #010101;
+            color: #e7e7e7;
+            line-height: 1.5;
         }
-        #balance {
-            color: green;
-            font-size: 40px;
+
+        hr {
+            opacity: 0.15;
         }
-        p {
+
+        #border1 {
+            display: grid;
+            place-items: center;
+            margin-top: 25px;
+            opacity: 0.15;
+        }
+
+        #minecraft-guide li {
+            margin-bottom: 15px;
+        }
+
+        #minecraft-guide {
+            display: grid;
+            place-items: center;
+            margin-top: 15px;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid #333;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #080808;
+        }
+
+        p code, li code {
+            background-color: #222;
+            padding: 2px 5px;
+            border-radius: 4px;
+            color: #00ffcc;
+        }
+        
+        pre code {
+            background: none;
+            color: #e7e7e7;
+            padding: 0;
+        }
+        pre {
+            margin: 0;
+        }
+
+        h2, h4, h5 {
+            margin-top: 15px;
+        }
+
+        .code-block {
+            position: relative;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 8px;
+            margin-top: 10px;
+            background-color: #0b0b0b;
+        }
+
+        .copy-btn {
             position: absolute;
-            font-size: 40px;
-            color: red;
-            right: 20px;
-            top: -20px;
+            top: 6px;
+            right: 6px;
+        
+            background: transparent;
+            border: none;
+        
+            font-size: 18px;
+            color: #aaa;
+        
+            cursor: pointer;
+            transition: 0.2s;
+        
+            border: 1px solid #333;
+            border-radius: 5px;
+            
         }
-        #click-me {
-            position: absolute;
-            font-size: 100px;
-            right: 180px;
-            top: 190px;
-            border-radius: 10px;
-            background-color: #000000;
-            color: white;
+        
+        .copy-btn:hover {
+            color: #fff;
+            transform: scale(1.2);
         }
-        #shop-btn {
-            position: absolute;
-            padding: 15px 30px;
-            font-size: 40px;
-            background-color: #e74c3c;
-            color: white;
-            border-radius: 10px;
-            margin-top: 20px;
-            right: 400px;
-            top: 500px;
-        }
-        .game-btn:active {
-            background-color: #3D3D3D !important;
-        }
-        .magColor:active {
-            background-color: #434343;
+        .copy-btn:active {
+            color: #2e2e2e;
+            transform: scale(0.95);
         }
     </style>
 </head>
+
 <body>
 
-    <h1>Мій перший клікер 💰</h1>
-    <p>Баланс: <span id="balance">0</span></p>
-    <button id="click-me"></button>
-    <button id="shop-btn">Магазин</button>
+    <h2 id="what">Як стати перекладачем, як писати ключі, як робити моди... все це дізнаєтеся тут</h2>
+
+    <hr>
+
+    <h4 id="startBnt">𐎃 Почнемо з привітання 𐎃</h4>
+    <p id="halloBnt">Привіт! Якщо ви тут - значить хочете навчитися перекладати та створювати моди</p>
+
+    <hr>
+
+    <h4 id="myXpBnt">𐎃 Що я думаю про переклади на власному досвіді? 𐎃</h4>
+    <p id="myXp">
+        Перекладати моди не так важко, як здається. Деякі люди просто одразу дивляться на щось важке і велике, через це формується страх перекладів, люди починають боятися елементарних речей. Сьогодні, я допоможу вам не боятися і навчу вас перекладати
+    </p>
+
+    <hr>
+
+    <h2 id="whatTranslateBnt">𐎃 <b style="color:red">Ура!</b> <b style="color:#00aab0">Як перекладати насправді?</b> 𐎃</h2>
+    <p id="whatTranslate1">Як я вже казав перекладати легко, тому зараз розкажу як ↓</p>
+
+    <div id="minecraft-guide">
+        <h5>𐎃 Як перекладати насправді (по кроках) 𐎃</h5>
+
+        <ol>
+            <li id="step-find-folder">Спочатку розпакуйте ваш мод в якусь папку</li>
+
+            <li id="step-open-file">
+                Переходьте по шляху <code>resource_pack/texts/en_US.lang</code> 
+                (перші два слова "en_US" можуть відрізнятися) ось список мов: 
+                en_US - англійська, uk_UA - українська, ru_RU - російська, de_DE - німецька...
+            </li>
+
+            <li id="step-save-ukraine">
+                Тепер відкривайте файл в якомусь текстовому редакторі (бажано в редакторі для коду, такому як "Acode"), і перекладаєте всі рядки
+                <b style="color:red;">ВАЖЛИВО:</b> ключі "id:item.name" та інші <b style="color:red;">НЕ ПЕРЕКЛАДАТИ</b>, перекладаємо тільки текст після "=".
+                Далі після перекладу зберігаємо файл правильно. 
+                Якщо ви перекладали на українську мову - зберігаємо файл як <code>uk_UA.lang</code>
+            </li>
+
+            <li id="saving">
+                Ще не забудьте перевірити файли предметів у 
+                <code>behaviour_pack/items/файл_предмету.json</code>, 
+                шукайте там блок <code>"minecraft:display_name": &#123;</code>, 
+                там внизу має бути <code>"value" :</code> і якщо там пише ключ з lang файлу - предмет перекладено, а як ні - треба вставляти самому
+            </li>
+
+            <li id="warning">
+                Будь ласка, на останок перевірте наявність файлу languages.json в 
+                <code>resource_pack/texts</code>, 
+                а якщо його немає - треба просто створити! Приклад:
+
+<div class="code-block">
+    <button class="copy-btn">❏</button>
+    <pre><code>{
+  "uk_UA": "Українська (Україна)",
+  "en_US": "English (United States)",
+  "en_UK": "English (United Kingdom)",
+  "ru_RU": "Русский (Россия)",
+  "pl_PL": "Polski (Polska)"
+}
+</code></pre>
+</div>
+            </li>
+        </ol>
+    </div>
+
+    <hr id="border1">
+    
+    <h4 id="yra">𐎃 <b style="color:#ffdf17">Вітаю!</b> 𐎃</h4>
+    <p id="happy">Ви навчились перекладати! Слідуюча велика тема - створення модів</p>
 
     <script>
-        function updateUI() {
-            scoreDisplay.textContent = money;
-            baton.textContent = `Заробити +${cP}`;
-            localStorage.setItem("myMoney", money);
-        }
-        let userName = prompt("Як вас звати?") || "Герой";
-        let cP = 20;
-        let savedMoney = localStorage.getItem("myMoney");
-        let money = savedMoney ? Number(savedMoney) : 0;
-        let baton = document.getElementById("click-me");
-        baton.textContent = `Заробити +${cP}`
-        let newBaton = document.getElementById("shop-btn");
-        let scoreDisplay = document.getElementById("balance");
-        let promoInput = document.createElement("input");
-        promoInput.type = "text";
-        promoInput.placeholder = "Введіть код...";
-        let warning = document.createElement("button");
-        warning.textContent = `Примітка: ${userName}, цей сайт тестовий, якщо ви бачите помилку - одразу кажіть`;
-        document.body.appendChild(warning);
-        scoreDisplay.textContent = money; 
-        baton.addEventListener("click", () => {
-            money += cP;
-            updateUI();
-        });
-        let promoContainer = document.createElement("div");
-        promoContainer.id = "promo-box";
-        promoContainer.style.position = "absolute";
-        promoContainer.style.right = "400px";
-        promoContainer.style.top = "650px";
-        promoContainer.style.width = "250px";
-        promoContainer.style.height = "250px";
-        document.body.appendChild(promoContainer);
-        let promoBtn = document.createElement("button");
-        promoBtn.textContent = "Активувати";
-        promoContainer.appendChild(promoInput);
-        promoContainer.appendChild(promoBtn);
-        promoBtn.addEventListener("click", () => {
-            if (promoInput.value === "KLS2026") {
-                money += 1000;
-                updateUI();
-                alert("Промокод активовано! +1000 монет 💰");
-                promoInput.value = "";
-            } else {
-                alert("Невірний код!");
-            }
-        });
-        newBaton.addEventListener("click", () => {
-            newBaton.style.display = "none";
-            let border = document.createElement("button");
-            border.textContent = "KLS";
-            border.id = "border-btn";
-            border.style.position = "absolute";
-            border.style.left = "110px"; 
-            border.style.top = "600px";
-            border.style.width = "700px";
-            border.style.height = "400px";
-            border.style.fontSize = "1px";
-            border.style.borderRadius = "15px";
-            border.style.borderColor = "#FF000C";
-            border.style.borderWidth = "10px";
-            border.style.backgroundColor = "#000000";
-            let buyPistol = document.createElement("button");
-            buyPistol.textContent = "Купити Пістолет (100 монет)";
-            buyPistol.id = "pistol-btn";
-            buyPistol.classList.add("game-btn");
-            buyPistol.style.position = "absolute";
-            buyPistol.style.zIndex = "100";
-            buyPistol.style.left = "320px"; 
-            buyPistol.style.top = "630px";
-            buyPistol.style.width = "300px";
-            buyPistol.style.height = "150px";
-            buyPistol.style.fontSize = "20px";
-            buyPistol.style.borderRadius = "15px";
-            buyPistol.style.backgroundColor = "#666666"
-            let buyCarabin = document.createElement("button");
-            buyCarabin.textContent = "Купити Автомат (300 монет)";
-            buyCarabin.id = "carabin-btn";
-            buyCarabin.classList.add("game-btn");
-            buyCarabin.style.position = "absolute";
-            buyCarabin.style.zIndex = "100";
-            buyCarabin.style.left = "160px"; 
-            buyCarabin.style.top = "780px";
-            buyCarabin.style.width = "300px";
-            buyCarabin.style.height = "150px";
-            buyCarabin.style.fontSize = "20px";
-            buyCarabin.style.borderRadius = "15px";
-            buyCarabin.style.backgroundColor = "#666666";
-            let buySniperRifle = document.createElement("button");
-            buySniperRifle.textContent = "Купити Снайперку (600 монет)";
-            buySniperRifle.id = "sniper-btn";
-            buySniperRifle.classList.add("game-btn");
-            buySniperRifle.style.position = "absolute";
-            buySniperRifle.style.zIndex = "100";
-            buySniperRifle.style.left = "460px"; 
-            buySniperRifle.style.top = "780px";
-            buySniperRifle.style.width = "300px";
-            buySniperRifle.style.height = "150px";
-            buySniperRifle.style.fontSize = "20px";
-            buySniperRifle.style.borderRadius = "15px";
-            buySniperRifle.style.backgroundColor = "#666666";
-            let exit = document.createElement("button");
-            exit.textContent = "❌";
-            exit.style.position = "absolute";
-            exit.style.left = "800px";
-            exit.style.top = "600px";
-            exit.style.height = "40px";
-            exit.style.width = "40px";
-            exit.style.backgroundColor = "#80FF00";
-            document.body.appendChild(border);
-            document.body.appendChild(buyPistol);
-            document.body.appendChild(buyCarabin);
-            document.body.appendChild(buySniperRifle);
-            document.body.appendChild(exit);
-            buyPistol.addEventListener("click", () => {
-                if (money >= 100) {
-                    let con = confirm(`${userName}, ви підтверджуєте покупку?`);
-                    if (con === true) {
-                        money -= 100;
-                        cP += 5;
-                        updateUI();
-                        alert("Ви купили Пістолет!");
-                        baton.textContent = `Заробити +${cP}`;
-                        updateUI();
-                    }
-                }
-                else if (money < 100) {
-                    alert("Вам не вистачає грошей");
-                }
-            });
-            buyCarabin.addEventListener("click", () => {
-                 if (money >= 300) {
-                    con = confirm(`${userName}, ви підтверджуєте покупку?`);
-                    if (con === true) {
-                        money -= 300;
-                        cP += 15;
-                        updateUI();
-                        alert("Ви купили Автомат!");
-                        baton.textContent = `Заробити +${cP}`;
-                        updateUI();
-                    }
-                }
-                else if (money < 300) {
-                    alert("Вам не вистачає грошей");
-                }
-            });
-            buySniperRifle.addEventListener("click", () => {
-                 if (money >= 600) {
-                    con = confirm(`${userName}, ви підтверджуєте покупку?`);
-                    if (con === true) {
-                        money -= 600;
-                        cP += 30;
-                        updateUI();
-                        alert("Ви купили Снайперку!");
-                        baton.textContent = `Заробити +${cP}`;
-                        updateUI();
-                    }
-                }
-                else if (money < 600) {
-                    alert("Вам не вистачає грошей");
-                }
-            });
-            exit.addEventListener("click", () => {
-                buyPistol.remove();
-                buyCarabin.remove();
-                buySniperRifle.remove();
-                exit.remove();
-                border.remove();
-                newBaton.style.display = "block";
-            });
+        const buttons = document.querySelectorAll(".copy-btn");
+
+        buttons.forEach(btn => {
+            btn.onclick = () => {
+                const code = btn.parentElement.querySelector("code").innerText;
+        
+                const textarea = document.createElement("textarea");
+                textarea.value = code;
+        
+                document.body.appendChild(textarea);
+                textarea.select();
+        
+                document.execCommand("copy");
+        
+                document.body.removeChild(textarea);
+        
+                btn.textContent = "✓";
+        
+                setTimeout(() => {
+                    btn.textContent = "❏";
+                }, 1500);
+            };
         });
     </script>
 
