@@ -1,2 +1,2 @@
 # Kopystka-Localization-Studio-first-site
-Yeasy clicker
+How to get translator?
