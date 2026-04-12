@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Документація перекладача</title>
+    <link rel="icon" type="png" href="favicon.png">
+
+    <style>
+        body {
+            font-family: Sans-Serif;
+            padding: 10px;
+            background-color: #010101;
+            color: #e7e7e7;
+            line-height: 1.5;
+        }
+
+        hr {
+            opacity: 0.15;
+        }
+
+        #modsTranslating {
+            place-items: center;
+            margin-top: 25px;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background-color: #080808;
+        }
+        
+        #modsCreating {
+            place-items: center;
+            margin-top: 25px;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background-color: #080808;
+        }
+        
+        #modsTranslating li {
+            margin-bottom: 15px; 
+        }
+        
+        #modsCreating li {
+            margin-bottom: 15px;
+        }
+        
+        p code, li code {
+            background-color: #222;
+            padding: 2px 5px;
+            border-radius: 4px;
+            color: #00ffcc;
+        }
+        
+        pre code {
+            background: none;
+            color: #e7e7e7;
+            padding: 0;
+        }
+        pre {
+            margin: 0;
+            overflow-x: auto;
+        }
+        
+        h2, h4, h5 {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .code-block {
+            position: relative;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 12px;
+            background-color: #0b0b0b;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+        
+            background: transparent;
+            border: none;
+        
+            font-size: 18px;
+            color: #aaa;
+        
+            cursor: pointer;
+            transition: 0.2s;
+        
+            border: 1px solid #333;
+            border-radius: 5px;
+            
+        }
+        
+        .copy-btn:hover {
+            color: #fff;
+        }
+        .copy-btn:active {
+            color: #2e2e2e;
+            transform: scale(0.70);
+        }
+        
+        a {
+            color: #ff1414;
+            text-decoration: none;
+            transition: 0.3s;
+            text-shadow: 0 0 5px #320000,
+                         0 0 10px #5f0000,
+                         0 0 20px #8f0000;
+        }
+        
+        a:hover {
+            color: #ff8585;
+        }
+        
+        .mod-icon {
+            width: 150px;
+            display: block;
+            margin: 10px auto;
+            border-radius: 10px;
+            border: 1px solid #333;
+        }
+        
+        .icon-box {
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px auto;
+            max-width: 300px;
+            background: #1a1a1a;
+        }
+        
+        .icon-box img {
+            width: 100px;
+            display: block;
+            margin: 0 auto 10px;
+            border-radius: 10px;
+        }
+        
+        .icon-box img:hover {
+            transform: scale(1.3);
+        }
+        
+        .icon-box img {
+            transition: 0.3s;
+        }
+        
+        .icon-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #5f0000;
+        }
+
+        li p {
+            margin: 0px;
+        }
+        
+        ol {
+            padding-left: 20px;
+        }
+        
+        .menu-btn {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            font-size: 22px;
+            cursor: pointer;
+            z-index: 1000;
+            color: #fff;
+        }
+        
+        #sidebar {
+            position: fixed;
+            top: 0;
+            left: -220px;
+            width: 200px;
+            height: 100%;
+            background: #0b0b0b;
+            border-right: 1px solid #333;
+            padding-top: 60px;
+            transition: 0.3s;
+            z-index: 999;
+        }
+        
+        #sidebar a {
+            display: block;
+            padding: 12px;
+            color: #ccc;
+            text-decoration: none;
+            border-bottom: 1px solid #222;
+        }
+        
+        #sidebar a:hover {
+            background: #111;
+            color: #fff;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        #sidebar a.active {
+            background: #111;
+            color: #ff1414;
+            box-shadow: 0 0 10px #5f0000;
+        }
+        
+        .gallery-item {
+            text-align: center;
+        }
+        
+        .gallery-item a {
+            display: inline-block;
+            margin-top: 6px;
+            padding: 6px 10px;
+        
+            border: 1px solid #333;
+            border-radius: 6px;
+        
+            font-size: 14px;
+            color: #aaa;
+        
+            transition: 0.3s;
+        }
+        
+        .gallery-item a:hover {
+            color: #fff;
+            border-color: #ff1414;
+            box-shadow: 0 0 10px #5f0000;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    
+    <div id="sidebar">
+        <a href="#what" data-target="what">📘 Документація</a>
+        <a href="#templates" data-target="templates">📦 Шаблони</a>
+        <a href="#mods" data-target="mods">⭐ Моди</a>
+        <a href="#images" data-target="images">🖼 Зображення</a>
+    </div>
+
+    <h2 id="what">Як стати перекладачем, як писати ключі, як робити моди... все це дізнаєтеся тут</h2>
+
+    <hr>
+
+    <h4 id="startBnt">𐎃 Почнемо з привітання 𐎃</h4>
+    <p id="halloBnt">Привіт! Це сайт по <code>Minecraft Bedrock</code> модах! Якщо ви тут - значить хочете навчитися перекладати та створювати моди</p>
+
+    <hr>
+
+    <h4 id="myXpBnt">𐎃 Що я думаю про переклади на власному досвіді? 𐎃</h4>
+    <p id="myXp">
+        Перекладати моди не так важко, як здається. Деякі люди просто одразу дивляться на щось важке і велике, через це формується страх перекладів, люди починають боятися елементарних речей. Сьогодні, я допоможу вам не боятися і навчу вас перекладати
+    </p>
+
+    <hr>
+
+    <h2 id="whatTranslateBnt">𐎃 <b style="color:red">Ура!</b> <b style="color:#00aab0">Як перекладати насправді?</b> 𐎃</h2>
+    <p id="whatTranslate1">Як я вже казав перекладати легко, тому зараз розкажу як ↓</p>
+
+    <div id="modsTranslating">
+        <h5>𐎃 Як перекладати насправді (по кроках) 𐎃</h5>
+
+        <ol>
+            <li id="step-find-folder">Спочатку розпакуйте ваш мод в якусь папку</li>
+
+            <li id="step-open-file">
+                Переходьте по шляху <code>resource_pack/texts/en_US.lang</code> 
+                (перші два слова "en_US" можуть відрізнятися) ось список мов: 
+                en_US - англійська, uk_UA - українська, ru_RU - російська, de_DE - німецька...
+            </li>
+
+            <li id="step-save-ukraine">
+                Тепер відкривайте файл в якомусь текстовому редакторі (бажано в редакторі для коду, такому як "Acode"), і перекладаєте всі рядки
+                <b style="color:red;">ВАЖЛИВО:</b> ключі "id:item.name" та інші <b style="color:red;">НЕ ПЕРЕКЛАДАТИ</b>, перекладаємо тільки текст після "=".
+                Далі після перекладу зберігаємо файл правильно. 
+                Якщо ви перекладали на українську мову - зберігаємо файл як <code>uk_UA.lang</code>
+            </li>
+
+            <li id="saving">
+                Ще не забудьте перевірити файли предметів у 
+                <code>behaviour_pack/items/файл_предмету.json</code>, 
+                шукайте там блок <code>"minecraft:display_name": &#123;</code>, 
+                там внизу має бути <code>"value" :</code> і якщо там пише ключ з lang файлу - предмет перекладено, а як ні - треба вставляти самому
+            </li>
+
+            <li id="warning">
+                Будь ласка, на останок перевірте наявність файлу <code>languages.json</code> в 
+                <code>resource_pack/texts</code>, 
+                а якщо його немає - треба просто створити! Приклад:
+
+<div class="code-block">
+    <button class="copy-btn">❏</button>
+    <pre><code>{
+  "uk_UA": "Українська (Україна)",
+  "en_US": "English (United States)",
+  "en_UK": "English (United Kingdom)",
+  "ru_RU": "Русский (Россия)",
+  "pl_PL": "Polski (Polska)"
+}
+</code></pre>
+</div>
+            </li>
+        </ol>
+    </div>
+
+    <hr>
+    
+    <h4 id="yraBnt">𐎃 <b style="color:#ffdf17">Вітаю!</b> 𐎃</h4>
+    <p id="yra">Ви навчились перекладати! Слідуюча велика тема - створення модів</p>
+    
+    <h2>Як створювати моди</h2>
+    
+        <div id="modsCreating">
+        <h5>𐎃 Як створювати моди (по кроках) 𐎃</h5>
+
+        <ol>
+            <li id="creatingFoldersAndFiles">Раджу спочатку зробити легкий мод, тому почніть створювати папки і файли, я розповім що кожне робить. Структура папок і файлів: 
+<div class="code-block">
+    <button class="copy-btn">❏</button>
+    <pre><code>resource_pack/
+│
+├── manifest.json    //паспорт моду
+├── pack_icon.png    //іконка моду
+│
+├── textures/    //текстури
+│   ├── item_texture.json    //підєднання
+│   ├── items/
+│
+├── texts/    //місце для перекладів
+│   ├── en_US.lang
+│   ├── uk_UA.lang
+│   └── languages.json
+
+====================================
+
+behavior_pack/
+│
+├── manifest.json    //паспорт моду
+├── pack_icon.png    //іконка моду
+│
+├── items/    //предмети
+│   └── ваша_назва.json    //файл предмета
+│ 
+├── recipes/    //крафти предметів
+│   └── ваша_назва.json    //файл для крафту
+|
+├── scripts/    //скрипти
+│   ├──events    //файли скриптів
+│   └── main.js    //під'єднання скриптів
+</code></pre>
+</div>
+            </li>
+
+            <li id="manifest">
+                Файл <code>manifest.json</code> - це "паспорт" моду, назва строго <code>manifest.json</code>. 
+                Щоб він не конфліктував з іншими модами треба унікальний <code>UUID</code>, 
+                його можна отримати на сайті <a href="https://www.uuidgenerator.net" target="_blank">uuidgenerator.net</a>
+                <br>Приклад <code>resource_pack</code> маніфест:
+<div class="code-block">
+    <button class="copy-btn">❏</button>
+    <pre><code>{
+  "format_version": 2,
+  "header": {
+    "name": "Ваша назва (АНГЛІЙСЬКОЮ)",
+    "description": "Опис (АНГЛІЙСЬКОЮ)",
+    "uuid": "UUID",
+    "version": [1, 2, 3],
+    "min_engine_version": [1, 21, 0]
+  },
+  "modules": [
+    {
+      "description": "Resource Pack Module",
+      "type": "resources",
+      "uuid": "UUID",
+      "version": [1, 2, 3]
+    }
+  ]
+}
+</code></pre>
+</div>
+                Приклад <code>behavior_pack</code> маніфест:
+<div class="code-block">
+    <button class="copy-btn">❏</button>
+    <pre><code>{
+  "format_version": 2,
+  "header": {
+    "name": "Ваша назва (АНГЛІЙСЬКОЮ)",
+    "description": "Опис (АНГЛІЙСЬКОЮ)",
+    "uuid": "UUID",
+    "version": [1, 2, 3],
+    "min_engine_version": [1, 21, 0]
+  },
+  "modules": [
+    {
+      "description": "Behavior Pack Module",
+      "type": "data",
+      "uuid": "UUID",
+      "version": [1, 2, 3]
+    },
+    {
+      "description": "Script Module",
+      "type": "script",
+      "language": "javascript",
+      "uuid": "UUID",
+      "version": [1, 2, 3],
+      "entry": "scripts/main.js"
+    }
+  ],
+  "dependencies": [
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.6.0"
+    },
+    {
+      "module_name": "@minecraft/server-ui",
+      "version": "2.0.0"
+    }
+  ]
+}
+</code></pre>
+</div>
+                <code>"format_version"</code> - версія формату.
+                <br><code>"header"</code>, <code>"name"</code>, <code>"description"</code> i <code>"version"</code> - основна інформація про мод.
+                <br><code>"uuid"</code> - унікальний ключ.
+                <p>Все, що зв'язано зі скриптами та <code>"dependencies"</code> - поки не чіпаємо
+                <b style="color:red">!ВАЖЛИВО!</b> на місця <code>UUID</code> треба вписати ключ з сайту <code>uuidgenerator.net</code></p>
+            </li>
+            
+            <li id="pack_icon">
+                Тепер поговоримо про <code>pack_icon.png</code>.
+                <code>pack_icon.png</code> - це іконка моду, яка буде відображатися в <code>Minecraft</code>, назва строго <code>pack_icon.png</code>.
+                <br>Наприклад, може бути така іконка:
+                <div class="icon-box">
+                        <img src="neon_swordik.png">
+                </div>
+            </li>
+            
+            <li id="textures">
+                Про <code>textures</code> і <code>texts</code> говорити не будемо, вони максимально легкі.
+                <p>Можу розповісти про файл <code>item_texture.json</code>.</p>
+                <p><code>item_texture.json</code> - це файл для під'єднання текстур. Назва строго <code>item_texture.json</code>.</p>
+                <br>Вміст:
+<div class="code-block">
+    <button class="copy-btn">❏</button>
+    <pre><code>{
+  "resource_pack_name": "M5566",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "my_sword": {
+      "textures": "textures/items/my_sword"
+    }
+  }
+}
+</code></pre>
+</div>
+                <code>"resource_pack_name"</code> - назва ресурс паку (неважливо).
+                <p><code>"texture_name"</code> - для чого файл, <code>"atlas.items"</code> - для предметів. Разом виходить: файл текстур для предметів</p>
+                <p><code>"texture_data"</code> - місце для текстур</p>
+                <p><code>"my_sword"</code> - назва текстури, яка буде використовуватись в інших файлах</p>
+                <p><code>"textures"</code> - повідомляє, що далі буде шлях до текстури, <code>"textures/items/my_sword"</code> - шлях до текстури.</p>
+                <p><b style="color:red">ПРОЧИТАЙТЕ!</b> якщо текстура за шляхом <code>textures/items/</code> називається <code>my_sword.png</code>, то в текстурному файлі <code>item_texture.json</code> треба писати <code>textures/items/my_sword</code> <b style="color:red">БЕЗ</b> .png!</p>
+            </li>
+                <li id="items">Тепер поговоримо про <code>items</code> і файл предмета в <code>behavior_pack</code>.
+                <p><code>items</code> - це папка в якій місцяться всі предмети, які мають з'явитися в <code>Minecraft</code></p>
+                <br>Наприклад, щоб зробити меч треба такий файл:
+<div class="code-block">
+    <button class="copy-btn">❏</button>
+    <pre><code>{
+  "format_version": "1.21.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "mymod:my_sword",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "назва (АНГЛІЙСЬКОЮ)"
+      },
+      "minecraft:icon": "my_sword",
+      "minecraft:damage": 8,
+      "minecraft:durability": {
+        "max_durability": 782
+      },
+      "minecraft:max_stack_size": 1,
+      "minecraft:hand_equipped": true,
+      "minecraft:creative_category": {
+        "parent": "equipment"
+      },
+      "minecraft:tags": {
+        "tags": [
+          "minecraft:is_sword"
+        ]
+      }
+    }
+  }
+}
+
+</code></pre>
+</div>
+                <b style="color:red">!ВАЖЛИВО!</b> числа і bolean (<code>true</code>, <code>false</code>), пишемо без лапок, коми ставимо після кожного блоку, крім останього.
+                <p><code>"format_version"</code> - версія формату (<b style="color:red">НЕ ЗМІНЮВАТИ</b>).</p>
+                <p><code>"minecraft:item"</code> - говорить, що це предмет.</p>
+                <p><code>"identifier"</code> - ID предмета, який показується при команді <code>/give</code>. Строго англійською і через двокрапку.<code>слово:назва_предмета</code>, відступи заборонені.</p>
+                <p><code>"category"</code> - категорія, в якій з'явиться предмет.</p> 
+                <p><code>"components"</code> - всі дані про предмет, наприклад назва, іконка, шкода і довговічність.</p>
+                <p><code>"minecraft:display_name"</code> - назва предмету. В самому файлі можна писати тільки англійською, а через ланг якою хочете.</p>
+                <p><code>"minecraft:icon"</code> - наша іконка з файлу <code>item_texture.json</code>.</p>
+                <p><code>"minecraft:damage"</code> - шкода.</p>
+                <p><code>"minecraft:durability"</code> - довговічність.</p>
+                <p><code>"minecraft:max_stack_size"</code> - максимальна кількість в 1 стаку.</p>
+                <p><code>"minecraft:hand_equipped"</code> - тримати як інстумент. <code>true</code> - так, <code>false</code> - ні.</p>
+                <p><code>"minecraft:creative_category"</code> - підтвердження категорії.</p>
+                <p><code>"minecraft:tags"</code> - теги, для схожої поведінки.</p>
+            </li>
+            
+            <li id="recipes">
+                Рецепти... в <code>Minecraft</code> їх багато і ми додамо свій! Надіюсь, ви створили всі потрібні файли і папки.
+                <p>Приклад крафту в файлі <code>recipes/</code>:</p>
+<div class="code-block">
+    <button class="copy-btn">❏</button>
+    <pre><code>{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "mymod:my_sword_recipe"
+    },
+    "tags": ["crafting_table"],
+    "pattern": [
+      " Y ",
+      " Y ",
+      " Y "
+    ],
+    "key": {
+      "Y": {
+        "item": "minecraft:stick"
+      }
+    },
+    "result": {
+      "item": "mymod:my_sword",
+      "count": 1
+    }
+  }
+}
+</code></pre>
+</div>
+                Тут є те, що ми з вами вже вчили, тому повторювати не буду.
+                <p><code>"minecraft:recipe_shaped"</code> - каже, що крафт має форму.</p>
+                <p><code>"pattern"</code> - порядок предметів.</p>
+                <p><code>"key"</code> - "ключі" крафту.</p>
+                <p><code>"Y"</code> - назва "ключа".</p>
+                <p><code>"item"</code> - предмет, який означає "ключ", <code>"minecraft:stick"</code> - ID предмета (<code>"minecraft:stick"</code> - це палка)</p>
+                <p><code>"result"</code> - що і скільки скрафтиться, <code>"item"</code> - що отримаємо, <code>"mymod:my_sword"</code> - який предмет отримаємо, <code>"count"</code> - скільки штук отримаємо (в нашому випадку 1). Разом це все виходить: якщо викласти палки <code>minecraft:stick</code> вертикально, то ми отримаємо 1 меч <code>"mymod:my_sword"</code></p>
+            </li>
+
+        </ol>
+    </div>
+    
+    <hr>
+    
+    <h4 id="yraBnt2"><b style="color:#ea9000">Тепер ви</b> <b style="color:red">Модер!</b></h4>
+    <p id="final">Ви навчились базовим речам в модингу, попереду ще багато всього - скрипти, групи предметів, моби, блоки... дякую за увагу! Надіюсь, що цей сайт допоміг вам!</p>
+    <hr>
+    <h4 id="me">Трохи про мене...</h4>
+    <p>Я не професійний розробник модів, але я пройшов весь шлях від нуля до створення власних модів.
+        Цей сайт — це мій досвід, який допоможе вам почати швидше і без болю. Якщо ви знайшли неправдиву інформацію - знайте, я брав це все у себе з голови.</p>
+    <p id="socials">Якщо хочете підтримати мене, написати кілька слів, або залишити відгук - пишіть сюди, <a href="https://t.me/GTASANANDREAS2026" target="_blank">на мій Telegram</a>. А ще в мене є свій Telegram канал <a href="https://t.me/kopystka_ls" target="_blank">🌐 <b style="color:red">Kopystka</b> <b style="color:blue">Localization</b> <b style="color:yellow">Studio</b></a></p>
+    
+    <hr>
+    
+    <h4 id="templates">Шаблони модів</h4>
+    
+    <hr>
+
+    <h4 id="mods">Мої моди</h4>
+    
+    <hr>
+    
+    <h4 id="images">Галерея зображень</h4>
+    
+    <div class="gallery">
+
+        <div class="icon-box">
+            <img src="diamond_sword.png">
+            <a href="diamond_sword.png" download>⬇️ Завантажити</a>
+        </div>
+    
+        <div class="icon-box">
+            <img src="pack_icon.png">
+            <a href="pack_icon.png" download>⬇️ Завантажити</a>
+        </div>
+
+    </div>
+    
+    <hr>
+    <div id="viewer" onclick="closeViewer()" style="
+        display:none;
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        background:rgba(0,0,0,0.9);
+        justify-content:center;
+        align-items:center;
+        z-index:2000;
+    ">
+        <img id="viewer-img" style="max-width:90%; max-height:90%; border-radius:10px;">
+    </div>
+    <script>
+        const buttons = document.querySelectorAll(".copy-btn");
+
+        buttons.forEach(btn => {
+            btn.onclick = () => {
+                const code = btn.parentElement.querySelector("code").innerText;
+        
+                const textarea = document.createElement("textarea");
+                textarea.value = code;
+        
+                document.body.appendChild(textarea);
+                textarea.select();
+        
+                document.execCommand("copy");
+        
+                document.body.removeChild(textarea);
+        
+                btn.textContent = "✓";
+        
+                setTimeout(() => {
+                    btn.textContent = "❏";
+                }, 1500);
+            };
+        });
+        
+    function toggleMenu() {
+        const menu = document.getElementById("sidebar");
+        menu.style.left = (menu.style.left === "0px") ? "-220px" : "0px";
+    }
+    
+    const links = document.querySelectorAll("#sidebar a");
+    
+    // клік по пункту
+    links.forEach(link => {
+        link.addEventListener("click", () => {
+    
+            // 🔻 закрити меню
+            document.getElementById("sidebar").style.left = "-220px";
+    
+            // 🔻 прибрати всі active
+            links.forEach(l => l.classList.remove("active"));
+    
+            // 🔻 додати active
+            link.classList.add("active");
+        });
+    });
+    
+    
+    // 🔥 підсвітка при скролі
+    window.addEventListener("scroll", () => {
+        let fromTop = window.scrollY;
+    
+        links.forEach(link => {
+            const section = document.getElementById(link.dataset.target);
+    
+            if (
+                section.offsetTop <= fromTop + 100 &&
+                section.offsetTop + section.offsetHeight > fromTop + 100
+            ) {
+                links.forEach(l => l.classList.remove("active"));
+                link.classList.add("active");
+            }
+        });
+    });
+    
+    const images = document.querySelectorAll(".gallery img");
+    const viewer = document.getElementById("viewer");
+    const viewerImg = document.getElementById("viewer-img");
+    
+    images.forEach(img => {
+        img.onclick = () => {
+            viewer.style.display = "flex";
+            viewerImg.src = img.src;
+        };
+    });
+    
+    function closeViewer() {
+        viewer.style.display = "none";
+    }
+    document.addEventListener("click", (e) => {
+        const menu = document.getElementById("sidebar");
+        const btn = document.querySelector(".menu-btn");
+    
+        if (!menu.contains(e.target) && !btn.contains(e.target)) {
+            menu.style.left = "-220px";
+        }
+    });
+    </script>
+
+</body>
+</html>
