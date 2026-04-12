@@ -18,13 +18,6 @@
             opacity: 0.15;
         }
 
-        #border1 {
-            display: grid;
-            place-items: center;
-            margin-top: 25px;
-            opacity: 0.15;
-        }
-
         #modsTranslating {
             place-items: center;
             margin-top: 25px;
@@ -74,6 +67,7 @@
         
         h2, h4, h5 {
             margin-top: 15px;
+            text-align: center;
         }
 
         .code-block {
@@ -164,10 +158,88 @@
         ol {
             padding-left: 20px;
         }
+        
+        .menu-btn {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            font-size: 22px;
+            cursor: pointer;
+            z-index: 1000;
+            color: #fff;
+        }
+        
+        #sidebar {
+            position: fixed;
+            top: 0;
+            left: -220px;
+            width: 200px;
+            height: 100%;
+            background: #0b0b0b;
+            border-right: 1px solid #333;
+            padding-top: 60px;
+            transition: 0.3s;
+            z-index: 999;
+        }
+        
+        #sidebar a {
+            display: block;
+            padding: 12px;
+            color: #ccc;
+            text-decoration: none;
+            border-bottom: 1px solid #222;
+        }
+        
+        #sidebar a:hover {
+            background: #111;
+            color: #fff;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        #sidebar a.active {
+            background: #111;
+            color: #ff1414;
+            box-shadow: 0 0 10px #5f0000;
+        }
+        
+        .gallery-item {
+            text-align: center;
+        }
+        
+        .gallery-item a {
+            display: inline-block;
+            margin-top: 6px;
+            padding: 6px 10px;
+        
+            border: 1px solid #333;
+            border-radius: 6px;
+        
+            font-size: 14px;
+            color: #aaa;
+        
+            transition: 0.3s;
+        }
+        
+        .gallery-item a:hover {
+            color: #fff;
+            border-color: #ff1414;
+            box-shadow: 0 0 10px #5f0000;
+        }
     </style>
 </head>
 
 <body>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    
+    <div id="sidebar">
+        <a href="#what" data-target="what">📘 Документація</a>
+        <a href="#templates" data-target="templates">📦 Шаблони</a>
+        <a href="#mods" data-target="mods">⭐ Моди</a>
+        <a href="#images" data-target="images">🖼 Зображення</a>
+    </div>
 
     <h2 id="what">Як стати перекладачем, як писати ключі, як робити моди... все це дізнаєтеся тут</h2>
 
@@ -234,7 +306,7 @@
         </ol>
     </div>
 
-    <hr id="border1">
+    <hr>
     
     <h4 id="yraBnt">𐎃 <b style="color:#ffdf17">Вітаю!</b> 𐎃</h4>
     <p id="yra">Ви навчились перекладати! Слідуюча велика тема - створення модів</p>
@@ -362,7 +434,7 @@ behavior_pack/
                 <code>pack_icon.png</code> - це іконка моду, яка буде відображатися в <code>Minecraft</code>, назва строго <code>pack_icon.png</code>.
                 <br>Наприклад, може бути така іконка:
                 <div class="icon-box">
-                        <img src="neon_swordik.png">
+                        <img src="images/neon_swordik.png">
                 </div>
             </li>
             
@@ -448,7 +520,7 @@ behavior_pack/
             
             <li id="recipes">
                 Рецепти... в <code>Minecraft</code> їх багато і ми додамо свій! Надіюсь, ви створили всі потрібні файли і папки.
-                <p>Приклад крафту:</p>
+                <p>Приклад крафту в файлі <code>recipes/</code>:</p>
 <div class="code-block">
     <button class="copy-btn">❏</button>
     <pre><code>{
@@ -482,7 +554,7 @@ behavior_pack/
                 <p><code>"key"</code> - "ключі" крафту.</p>
                 <p><code>"Y"</code> - назва "ключа".</p>
                 <p><code>"item"</code> - предмет, який означає "ключ", <code>"minecraft:stick"</code> - ID предмета (<code>"minecraft:stick"</code> - це палка)</p>
-                <p><code>"result"</code> - що і скільки скрафтиться, <code>"item"</code> - що отримаємо, <code>"mymod:my_sword"</code> - який предмет отримаємо, <code>"count"</code> - скільки штук отримаємо (в нашому випадку 1)</p>
+                <p><code>"result"</code> - що і скільки скрафтиться, <code>"item"</code> - що отримаємо, <code>"mymod:my_sword"</code> - який предмет отримаємо, <code>"count"</code> - скільки штук отримаємо (в нашому випадку 1). Разом це все виходить: якщо викласти палки <code>minecraft:stick</code> вертикально, то ми отримаємо 1 меч <code>"mymod:my_sword"</code></p>
             </li>
 
         </ol>
@@ -491,7 +563,39 @@ behavior_pack/
     <hr>
     
     <h4 id="yraBnt2"><b style="color:#ea9000">Тепер ви</b> <b style="color:red">Модер!</b></h4>
-    <p id="final">Ви навчились базовим речам в модингу, дякую за увагу!</p>
+    <p id="final">Ви навчились базовим речам в модингу, попереду ще багато всього - скрипти, групи предметів, моби, блоки... дякую за увагу! Надіюсь, що цей сайт допоміг вам!</p>
+    <hr>
+    <h4 id="me">Трохи про мене...</h4>
+    <p>Я не професійний розробник модів, але я пройшов весь шлях від нуля до створення власних модів.
+        Цей сайт — це мій досвід, який допоможе вам почати швидше і без болю. Якщо ви знайшли неправдиву інформацію - знайте, я брав це все у себе з голови.</p>
+    <p id="socials">Якщо хочете підтримати мене, написати кілька слів, або залишити відгук - пишіть сюди, <a href="https://t.me/GTASANANDREAS2026" target="_blank">на мій Telegram</a>. А ще в мене є свій Telegram канал <a href="https://t.me/kopystka_ls" target="_blank">🌐 <b style="color:red">Kopystka</b> <b style="color:blue">Localization</b> <b style="color:yellow">Studio</b></a></p>
+    
+    <hr>
+    
+    <h4 id="templates">Шаблони модів</h4>
+    
+    <hr>
+
+    <h4 id="mods">Мої моди</h4>
+    
+    <hr>
+    
+    <h4 id="images">Галерея зображень</h4>
+    
+    <div class="gallery">
+
+        <div class="gallery-item">
+            <img src="diamond_sword.png">
+            <a href="download_sword.png" download>⬇️ Завантажити</a>
+        </div>
+    
+        <div class="gallery-item">
+            <img src="pack_icon.png">
+            <a href="pack_icon.png" download>⬇️ Завантажити</a>
+        </div>
+
+    </div>
+    
     <hr>
 
     <script>
@@ -518,6 +622,61 @@ behavior_pack/
                 }, 1500);
             };
         });
+        
+    function toggleMenu() {
+        const menu = document.getElementById("sidebar");
+        menu.style.left = (menu.style.left === "0px") ? "-220px" : "0px";
+    }
+    
+    const links = document.querySelectorAll("#sidebar a");
+    
+    // клік по пункту
+    links.forEach(link => {
+        link.addEventListener("click", () => {
+    
+            // 🔻 закрити меню
+            document.getElementById("sidebar").style.left = "-220px";
+    
+            // 🔻 прибрати всі active
+            links.forEach(l => l.classList.remove("active"));
+    
+            // 🔻 додати active
+            link.classList.add("active");
+        });
+    });
+    
+    
+    // 🔥 підсвітка при скролі
+    window.addEventListener("scroll", () => {
+        let fromTop = window.scrollY;
+    
+        links.forEach(link => {
+            const section = document.getElementById(link.dataset.target);
+    
+            if (
+                section.offsetTop <= fromTop + 100 &&
+                section.offsetTop + section.offsetHeight > fromTop + 100
+            ) {
+                links.forEach(l => l.classList.remove("active"));
+                link.classList.add("active");
+            }
+        });
+    });
+    
+    const images = document.querySelectorAll(".gallery img");
+    const viewer = document.getElementById("viewer");
+    const viewerImg = document.getElementById("viewer-img");
+    
+    images.forEach(img => {
+        img.onclick = () => {
+            viewer.style.display = "flex";
+            viewerImg.src = img.src;
+        };
+    });
+    
+    function closeViewer() {
+        viewer.style.display = "none";
+    }
     </script>
 
 </body>
