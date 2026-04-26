@@ -161,8 +161,17 @@
             margin: 0px;
         }
         
+        div p {
+            margin: 0px;
+        }
+        
         ol {
             padding-left: 20px;
+        }
+        
+        .centre {
+            text-align: center;
+            opacity: 0.50;
         }
         
         .menu-btn {
@@ -341,7 +350,7 @@
 │
 ├── textures/    //текстури
 │   ├── item_texture.json    //підєднання
-│   ├── items/
+│   └── items/
 │
 ├── texts/    //місце для перекладів
 │   ├── en_US.lang
@@ -455,7 +464,7 @@ behavior_pack/
             <li id="textures">
                 Про <code>textures</code> і <code>texts</code> говорити не будемо, вони максимально легкі.
                 <p>Можу розповісти про файл <code>item_texture.json</code>.</p>
-                <p><code>item_texture.json</code> - це файл для під'єднання текстур. Назва строго <code>item_texture.json</code>.</p>
+                <p><code>item_texture.json</code> - це файл для під'єднання текстур. Назва строго <code>item_texture.json</code>, доступні роздільні здатності зображень - <code>16x16</code>, <code>32x32</code>, <code>64x64</code>, <code>128x128</code>.</p>
                 <br>Вміст:
 <div class="code-block">
     <button class="copy-btn">❏</button>
@@ -587,10 +596,12 @@ behavior_pack/
     <hr>
     
     <h4 id="templates">Шаблони модів</h4>
+    <p class="centre">Скоро...</p>
     
     <hr>
 
     <h4 id="mods">Мої моди</h4>
+    <p class="centre">В розробці...</p>
     
     <hr>
     
@@ -630,7 +641,7 @@ behavior_pack/
 
         buttons.forEach(btn => {
             btn.onclick = () => {
-                const code = btn.parentElement.querySelector("code").innerText;
+                const code = btn.parentElement.querySelector("code").textContent;
         
                 const textarea = document.createElement("textarea");
                 textarea.value = code;
@@ -713,6 +724,5 @@ behavior_pack/
         }
     });
     </script>
-
 </body>
 </html>
